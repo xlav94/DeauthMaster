@@ -23,7 +23,7 @@ Before installing the project, make sure you have the following installed on you
 
 ## Installation
 ```shell
-git clone https://github.com/xlav94/wifi_deauth.git
+git clone https://github.com/xlav94/DeauthMaster.git
 ```
 
 ## Usage
