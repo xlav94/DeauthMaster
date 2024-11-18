@@ -48,7 +48,7 @@ def check_dnsmasq():
 
 try:
     if check_ip("wlan0"):
-        set_ip_interface = subprocess.run(["ip", "del", "add", ip_addr, "dev", "wlan0"], check=True)
+        set_ip_interface = subprocess.run(["ip", "addr", "del", ip_addr, "dev", "wlan0"], check=True)
     set_ip_interface = subprocess.run(["ip", "addr", "add", "192.168.1.1/24", "dev", "wlan0"], check=True)
     stop_dnsmasq = subprocess.run(["systemctl", "stop", "dnsmasq"], check=True) 
     stop_hostapd = subprocess.run(["systemctl", "stop", "hostapd"], check=True)
