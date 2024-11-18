@@ -24,25 +24,6 @@ def check_ip(interface):
         print(f"Error executing the command: {e}")
         return False
     
-def check_dnsmasq():
-    try:
-        # Run lsof to check for processes using port 53
-        result = subprocess.run(['lsof', '-i', ':53'], capture_output=True, text=True)
-        
-        # Check if dnsmasq is in the output
-        if result.returncode == 0:
-            if 'dnsmasq' in result.stdout:
-                return True
-            else:
-                return False
-        else:
-            # If lsof fails (no processes using port 53)
-            print("Error: No process is listening on port 53 or lsof failed.")
-            return False
-    except Exception as e:
-        print(f"Error executing the command: {e}")
-        return False
-
 try:
     if check_ip("wlan0"):
         set_ip_interface = subprocess.run(["ip", "addr", "flush", "dev", "wlan0"], check=True)
@@ -60,8 +41,6 @@ try:
             )
     subprocess.run(["iptables", "-t", "nat", "-A", "POSTROUTING", "-j", "MASQUERADE"], check=True)
 
-    if check_dnsmasq:
-        subprocess.run(["killall", "dnsmasq"], check=True)
     subprocess.run(["dnsmasq", "-C", "dnsmasq.conf"], check=True)
     subprocess.run(["hostapd", "hostapd.conf"], check=True)
     
