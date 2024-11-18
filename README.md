@@ -12,7 +12,7 @@
 
 ## Description
 
-**DeauthMaster** DeauthMaster is a specialized tool for automating deauthentication attacks on WPA2 networks, particularly in environments where Wi-Fi networks are using roaming. The program automatically targets and disrupts each access point in the roaming network, effectively disconnecting devices as they transition between access points. This tool is designed to automate the process of deauthenticating devices from all access points within a roaming network, making it a powerful tool for network security assessments and understanding the vulnerabilities introduced by roaming in Wi-Fi environments.
+**DeauthMaster** is a specialized tool for automating deauthentication attacks on WPA2 networks, particularly in environments where Wi-Fi networks are using roaming. The program automatically targets and disrupts each access point in the roaming network, effectively disconnecting devices as they transition between access points. This tool is designed to automate the process of deauthenticating devices from all access points within a roaming network, making it a powerful tool for network security assessments and understanding the vulnerabilities introduced by roaming in Wi-Fi environments.
 
 In addition to its deauthentication capabilities, DeauthMaster can also create a fake Wi-Fi access point with a captive portal. This allows for further testing and analysis by simulating a rogue network, enabling users to study potential risks such as credential harvesting and phishing attacks in controlled environments.
 
