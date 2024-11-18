@@ -1,5 +1,10 @@
 /* Un exemple simple de CSS */
-
+@font-face {
+    font-family: 'Open Sans';
+    src: url(../static/Font/OpenSans-VariableFont_wdth\,wght.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     font-family: "Open Sans", Arial, sans-serif;
     background-color: #f4f4f4;

