@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <title>Acceuil</title>
+</head>
+<body>
+
+    <div class="content">
+        <img class="udem-logo" src="{{ url_for('static', filename='udem-logo.svg') }}" alt="Logo">
+        <h2>Authentification</h2>
+    
+    <form action="/authentication" method="POST">
+        <div class="text_input_container">
+            <input type="text" id="text_input" name="text_input" placeholder="Code d'accès ou courriel UdeM" required>
+        </div>
+        <div class="password_input_container">
+            <input type="password" id="password_input" name="password_input" placeholder="Mot de passe(UNIP)" required>
+        </div>
+        <div class="checkbox_container">
+            <input type="checkbox" id="checkbox" name="checkbox">
+            <label for="checkbox">J’utilise un appareil public.</label>
+        </div>
+        <div class="submit_button_container">
+            <button type="submit">SE CONNECTER</button>
+            <p class="help">Mot de passe oublié <br> ou A2F non configuré</p>
+        </div>
+        <div class="term">
+            <p>Confidentialité</p>
+            <span class="separator">|</span>
+            <p>Conditions d'utilisation</p>
+        </div>
+    </form>
+    </div>
+    <footer>
+        © Université de Montréal, 2024 <br>
+        Tous droits réservés</p>
+    </footer>
+    
+
+</body>
+</html>

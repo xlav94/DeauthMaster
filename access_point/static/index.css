@@ -1,0 +1,201 @@
+/* Un exemple simple de CSS */
+@font-face {
+    font-family: 'Open Sans';
+    src: url(../static/Font/OpenSans-VariableFont_wdth\,wght.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;  
+    height: 100vh;
+    background-image: url(../static/background-2.jpg);
+}
+.content{
+    position: relative;
+    align-self: center;
+    padding: 56px 77px;
+    background-color: #006bb6;
+    width: 100%;
+    max-width: 460px;
+    box-sizing: border-box; /* S'assurer que le padding ne déborde pas */
+    color: white;
+    
+}
+
+@media screen and (max-width: 460px){
+    body{
+        background-image: none;
+        background-color: #006bb6;
+        height: auto;
+        padding: 0;
+    }
+    .content{
+        max-width: 460px;
+        padding: 20px 30px;
+        position: relative;
+        align-self: center;
+        margin: 20px 0 0 0;
+        transform: translateY(-22px);
+        font-size: 14px;
+    }
+    .submit_button_container{
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start !important;
+        width: 100%;
+    }
+    .term{
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
+
+.udem-logo{
+    display: block;
+    margin: 0 auto 23px;
+    width: 100%;
+    max-width: 204px;
+    text-align: center;
+    height: 79.133px;
+    min-height: 1px;
+}
+
+h2 {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 20px;
+    color: #fff;
+    text-align: left;
+    margin-top: 50px;
+    font-weight: 400;
+}
+
+form {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+input {
+    display: block;
+    height: 40px;
+    max-width: 400px;
+    width: 100%;
+    border-color: #cdcdcd;
+    border-style: solid;
+    box-sizing: border-box;
+    border-width: 1px;
+    align-self: flex-start;
+    border: 0 none;
+    border-radius: 0;
+    color: black;
+    background: #bfdaed;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+
+}
+input::placeholder {
+    color: #464646;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    background-color: #fff; /* Couleur de fond bleu clair */
+}
+
+.checkbox_container{
+    display: flex;
+    justify-content: start;
+    align-items: center;  
+    margin-bottom: 20px;  
+}
+.checkbox_container input[type="checkbox"]{
+    display: none;
+}
+.checkbox_container label {
+    font-size: 13px;
+    position: relative;
+    padding-left: 30px; /* Espace pour la case à cocher personnalisée */
+    cursor: pointer;
+}
+
+.checkbox_container label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;  /* Taille de la case à cocher */
+    height: 20px;
+    background-color: #bfdaed;  /* Couleur de fond par défaut */
+    transition: background-color 0.3s ease; /* Transition pour un effet plus fluide */
+}
+
+.submit_button_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+button {
+    display: inline-block;
+    border-radius: 0;
+    background: #003d5f;
+    color: #fff;
+    font-weight: normal;
+    font-size: 15px;
+    height: 40px;
+    border: 0 none;
+    max-width: 100%;
+    min-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    outline: none;
+    cursor: pointer;
+    
+}
+
+button:hover {
+    background: black;
+}
+
+.help{
+    display: inline-block;
+    font-size: 14px;
+    text-decoration-line: underline;
+    cursor: pointer;
+    text-align: left;
+}
+
+.term{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.separator {
+    margin: 0 10px;            /* Espace de part et d'autre du séparateur */
+    color: white;               /* Couleur du séparateur, vous pouvez ajuster */
+}
+
+.term p{
+    text-decoration-line: underline;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
