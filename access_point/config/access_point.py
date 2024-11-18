@@ -44,7 +44,7 @@ def check_dnsmasq():
         return False
 
 try:
-    ip = check_ip
+    ip = check_ip("wlan0")
     if ip[0]:
         set_ip_interface = subprocess.run(["ip", "addr", "del", ip[1], "dev", "wlan0"], check=True)
     set_ip_interface = subprocess.run(["ip", "addr", "add", "192.168.1.1/24", "dev", "wlan0"], check=True)
