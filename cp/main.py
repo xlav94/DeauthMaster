@@ -17,7 +17,7 @@ def send_text():
 @app.route('/hotspot-detect.html')
 def hotspot_detect():
     # Répond à la requête /hotspot-detect.html pour confirmer que le portail captive est actif
-    return redirect("http://192.168.56.128:4000", code=302)
+    return redirect("http://192.168.56.128:80", code=302)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port="4000",debug=True)  # Lancer le serveur Flask
+    app.run(host="0.0.0.0",port="80",debug=True)  # Lancer le serveur Flask
