@@ -12,17 +12,17 @@ def check_ip(interface):
             match = re.search(r'inet (\d+\.\d+\.\d+\.\d+)', result.stdout)
             if match:
                 # Return the IP address found
-                return [True, match.group(1)]
+                return True
             else:
                 # No IPv4 address found
-                return [False, None]
+                return False
         else:
             # In case of an error (e.g., interface doesn't exist)
             print(f"Error: Could not retrieve address for interface {interface}")
-            return [False, None]
+            return False
     except Exception as e:
         print(f"Error executing the command: {e}")
-        return [False, None]
+        return False
     
 def check_dnsmasq():
     try:
@@ -44,9 +44,8 @@ def check_dnsmasq():
         return False
 
 try:
-    ip = check_ip("wlan0")
-    if ip[0]:
-        set_ip_interface = subprocess.run(["ip", "addr", "del", ip[1], "dev", "wlan0"], check=True)
+    if check_ip("wlan0"):
+        set_ip_interface = subprocess.run(["ip", "addr", "flush", "dev", "wlan0"], check=True)
     set_ip_interface = subprocess.run(["ip", "addr", "add", "192.168.1.1/24", "dev", "wlan0"], check=True)
     stop_dnsmasq = subprocess.run(["systemctl", "stop", "dnsmasq"], check=True) 
     stop_hostapd = subprocess.run(["systemctl", "stop", "hostapd"], check=True)
